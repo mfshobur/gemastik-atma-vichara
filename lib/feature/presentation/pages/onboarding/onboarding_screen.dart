@@ -1,4 +1,5 @@
 import 'package:atma_vichara_gemastik/const/resource.dart';
+import 'package:atma_vichara_gemastik/core/router.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/primary_elevated_button.dart';
 import 'package:flutter/material.dart';
 
@@ -28,7 +29,7 @@ class OnboardingScreen extends StatelessWidget {
                 children: [
                   PrimaryElevatedButton(
                     text: 'Masuk',
-                    onPressed: () {},
+                    onPressed: () => router.go('/onboarding/signin'),
                     dense: true,
                     width: 167,
                     fontSize: 18,
@@ -36,7 +37,7 @@ class OnboardingScreen extends StatelessWidget {
                   const SizedBox(width: 16),
                   PrimaryElevatedButton(
                     text: 'Daftar',
-                    onPressed: () {},
+                    onPressed: () => router.go('/onboarding/signup'),
                     disabled: true,
                     dense: true,
                     width: 167,

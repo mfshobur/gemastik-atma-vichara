@@ -85,7 +85,7 @@ class _SigninScreenState extends State<SigninScreen> {
               const SizedBox(height: 20),
               PrimaryElevatedButton(
                 text: 'Masuk',
-                onPressed: () {},
+                onPressed: () => context.go('/home'),
               ),
             ],
           ),

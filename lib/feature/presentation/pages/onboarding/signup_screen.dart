@@ -1,10 +1,13 @@
 import 'package:atma_vichara_gemastik/const/resource.dart';
 import 'package:atma_vichara_gemastik/core/constants.dart';
+import 'package:atma_vichara_gemastik/core/utils/custom_snackbar.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/primary_elevated_button.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/text_input_column.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class SignupScreen extends StatefulWidget {
   const SignupScreen({super.key});
@@ -35,6 +38,18 @@ class _SignupScreenState extends State<SignupScreen> {
     passwordController.dispose();
     confirmPasswordController.dispose();
     super.dispose();
+  }
+
+  void onSubmit() {
+    if (passwordController.text != confirmPasswordController.text) {
+      CustomSnackbar.alert(context, 'Password tidak sama');
+    } else {
+      Provider.of<UserNotifier>(context, listen: false).signUp(
+        usernameController.text,
+        emailController.text,
+        passwordController.text,
+      );
+    }
   }
 
   @override
@@ -106,9 +121,23 @@ class _SignupScreenState extends State<SignupScreen> {
                   ),
                 ),
                 const SizedBox(height: 20),
-                PrimaryElevatedButton(
-                  text: 'Register',
-                  onPressed: () {},
+                Consumer<UserNotifier>(
+                  builder: (context, value, child) {
+                    if (value.signUpState.stateLoading()) {
+                      return const Center(child: CircularProgressIndicator());
+                    } else if (value.signUpState.stateError()) {
+                      // scaffold error message
+                      Future.microtask(
+                          () => CustomSnackbar.alert(context, value.signUpState.failure!.message));
+                    } else if (value.signUpState.stateSuccess()) {
+                      // go to home
+                      Future.microtask(() => context.go('/home'));
+                    }
+                    return PrimaryElevatedButton(
+                      text: 'Register',
+                      onPressed: onSubmit,
+                    );
+                  },
                 ),
               ],
             ),

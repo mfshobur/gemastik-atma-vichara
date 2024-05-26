@@ -7,9 +7,6 @@ class R {
   /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/icons/goal.png)
   static const String ASSETS_ICONS_GOAL_PNG = 'assets/icons/goal.png';
 
-  /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/icons/home.png)
-  static const String ASSETS_ICONS_HOME_PNG = 'assets/icons/home.png';
-
   /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/icons/icon.png)
   static const String ASSETS_ICONS_ICON_PNG = 'assets/icons/icon.png';
 

@@ -20,6 +20,9 @@ final kShadow1 = [
   ),
 ];
 
+const kConnectionFailTitle = "Internet disconnected";
+const kConnectionFailMessage = "Connect your phone with the internet";
+
 const kFontweightBold = FontWeight.w700;
 const kFontweightSemiBold = FontWeight.w600;
 const kFontweightRegular = FontWeight.w400;

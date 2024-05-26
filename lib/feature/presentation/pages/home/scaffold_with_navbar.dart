@@ -60,23 +60,12 @@ class ScaffoldWithNavBar extends StatelessWidget {
                     icon: Padding(
                       padding: const EdgeInsets.only(top: 0),
                       child: Image(
-                        image: const AssetImage(R.ASSETS_ICONS_HOME_PNG),
+                        image: const AssetImage(R.ASSETS_ICONS_REFLECTION_PNG),
                         color: navigationShell.currentIndex == 0 ? color.primary : null,
                         width: 25,
                       ),
                     ),
                     label: 'Home',
-                  ),
-                  BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: Image(
-                        image: const AssetImage(R.ASSETS_ICONS_REFLECTION_PNG),
-                        color: navigationShell.currentIndex == 1 ? color.primary : null,
-                        width: 25,
-                      ),
-                    ),
-                    label: 'Reflection',
                   ),
                   BottomNavigationBarItem(
                     icon: Padding(

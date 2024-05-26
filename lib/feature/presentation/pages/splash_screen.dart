@@ -1,7 +1,9 @@
 import 'package:atma_vichara_gemastik/const/resource.dart';
 import 'package:atma_vichara_gemastik/core/constants.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:provider/provider.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -14,7 +16,8 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     Future.delayed(const Duration(seconds: 2), () {
-      context.go('/onboarding');
+      Provider.of<UserNotifier>(context, listen: false).getCurrentUser();
+      // context.go('/onboarding');
     });
     super.initState();
   }
@@ -24,25 +27,34 @@ class _SplashScreenState extends State<SplashScreen> {
     final color = Theme.of(context).colorScheme;
     return Scaffold(
       body: SafeArea(
-        child: Center(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(
-                R.ASSETS_ICONS_ICON_PNG,
-                width: 150,
+        child: Consumer<UserNotifier>(
+          builder: (context, userNotifier, _) {
+            if (userNotifier.getCurrentUserState.stateError()) {
+              Future.microtask(() => context.go('/onboarding'));
+            } else if (userNotifier.getCurrentUserState.stateSuccess()) {
+              Future.microtask(() => context.go('/home'));
+            }
+            return Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Image.asset(
+                    R.ASSETS_ICONS_ICON_PNG,
+                    width: 150,
+                  ),
+                  const SizedBox(height: 24),
+                  Text(
+                    kAppName,
+                    style: TextStyle(
+                      color: color.primary,
+                      fontSize: 26,
+                      fontWeight: kFontweightSemiBold,
+                    ),
+                  ),
+                ],
               ),
-              const SizedBox(height: 24),
-              Text(
-                kAppName,
-                style: TextStyle(
-                  color: color.primary,
-                  fontSize: 26,
-                  fontWeight: kFontweightSemiBold,
-                ),
-              ),
-            ],
-          ),
+            );
+          },
         ),
       ),
     );

@@ -1,8 +1,10 @@
 import 'package:atma_vichara_gemastik/core/constants.dart';
 import 'package:atma_vichara_gemastik/core/router.dart';
 import 'package:atma_vichara_gemastik/core/theme.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
+import 'package:provider/provider.dart';
 import 'firebase_options.dart';
 
 void main() async {
@@ -19,11 +21,16 @@ class App extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp.router(
-      title: kAppName,
-      theme: AppTheme().theme,
-      debugShowCheckedModeBanner: false,
-      routerConfig: router,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => UserNotifier()),
+      ],
+      child: MaterialApp.router(
+        title: kAppName,
+        theme: AppTheme().theme,
+        debugShowCheckedModeBanner: false,
+        routerConfig: router,
+      ),
     );
   }
 }

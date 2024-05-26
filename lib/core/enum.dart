@@ -3,3 +3,10 @@ enum ReflectionType {
   present,
   future,
 }
+
+enum RequestState {
+  initial,
+  loading,
+  success,
+  error,
+}

@@ -85,7 +85,16 @@ class UserNotifier extends ChangeNotifier {
   }
 
   Future<void> signOut() async {
+    signOutState.state = RequestState.loading;
+    notifyListeners();
     await _auth.signOut();
+    // remove user data from local
+    signOutState.state = RequestState.success;
+    notifyListeners();
+
+    final prefs = await SharedPreferences.getInstance();
+    await prefs.remove('user');
+    user = null;
   }
 
   Future<void> getCurrentUser() async {

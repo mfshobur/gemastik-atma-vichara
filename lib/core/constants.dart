@@ -8,6 +8,7 @@ const kDisable = Color(0xffF0F0F0);
 final kDefaultErrorColor = Colors.red[700]!;
 const kInputBorderColor = Color(0xff919191);
 const kTextGreyColor = Color(0xffB1B1B1);
+const kRedColor = Color(0xffFF0000);
 
 const kDefaultPadding = 24.0;
 

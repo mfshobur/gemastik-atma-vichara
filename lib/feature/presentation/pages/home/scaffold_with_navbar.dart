@@ -72,7 +72,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 0),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_NOTE_PNG),
-                        color: navigationShell.currentIndex == 2 ? color.primary : null,
+                        color: navigationShell.currentIndex == 1 ? color.primary : null,
                         width: 25,
                       ),
                     ),
@@ -83,7 +83,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 0),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_GOAL_PNG),
-                        color: navigationShell.currentIndex == 3 ? color.primary : null,
+                        color: navigationShell.currentIndex == 2 ? color.primary : null,
                         width: 25,
                       ),
                     ),
@@ -94,7 +94,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
                       padding: const EdgeInsets.only(top: 0),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_PROFILE_PNG),
-                        color: navigationShell.currentIndex == 4 ? color.primary : null,
+                        color: navigationShell.currentIndex == 3 ? color.primary : null,
                         width: 25,
                       ),
                     ),

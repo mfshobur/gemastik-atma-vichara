@@ -6,7 +6,6 @@ import 'package:atma_vichara_gemastik/feature/presentation/pages/onboarding/onbo
 import 'package:atma_vichara_gemastik/feature/presentation/pages/onboarding/signin_screen.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/onboarding/signup_screen.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/profile_page.dart';
-import 'package:atma_vichara_gemastik/feature/presentation/pages/reflection_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/splash_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -37,75 +36,65 @@ final router = GoRouter(
       ],
     ),
     StatefulShellRoute.indexedStack(
-          builder: (context, state, navigationShell) {
-            // main page will have navbar
-            if (state.fullPath == '/home' ||
-                state.fullPath == '/reflection' ||
-                state.fullPath == '/note' ||
-                state.fullPath == '/goal' ||
-                state.fullPath == '/profile') {
-              return ScaffoldWithNavBar(navigationShell: navigationShell);
-            }
-            // other page will not have navbar
-            return Scaffold(
-              body: Center(
-                child: Container(
-                  constraints: const BoxConstraints(
-                    maxWidth: 480,
-                  ),
-                  child: navigationShell,
-                ),
+      builder: (context, state, navigationShell) {
+        // main page will have navbar
+        if (state.fullPath == '/home' ||
+            state.fullPath == '/note' ||
+            state.fullPath == '/goal' ||
+            state.fullPath == '/profile') {
+          return ScaffoldWithNavBar(navigationShell: navigationShell);
+        }
+        // other page will not have navbar
+        return Scaffold(
+          body: Center(
+            child: Container(
+              constraints: const BoxConstraints(
+                maxWidth: 480,
               ),
-            );
-          },
-          branches: [
-            StatefulShellBranch(
-              navigatorKey: _sectionNavigatorKey,
-              routes: [
-                GoRoute(
-                  name: 'home',
-                  path: '/home',
-                  builder: (context, state) => const HomePage(),
-                ),
-              ],
+              child: navigationShell,
             ),
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  name: 'reflection',
-                  path: '/reflection',
-                  builder: (context, state) => const ReflectionPage(),
-                ),
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  name: 'note',
-                  path: '/note',
-                  builder: (context, state) => const NotePage(),
-                ),
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  name: 'goal',
-                  path: '/goal',
-                  builder: (context, state) => const GoalPage(),
-                ),
-              ],
-            ),
-            StatefulShellBranch(
-              routes: [
-                GoRoute(
-                  name: 'profile',
-                  path: '/profile',
-                  builder: (context, state) => const ProfilePage(),
-                ),
-              ],
+          ),
+        );
+      },
+      branches: [
+        StatefulShellBranch(
+          navigatorKey: _sectionNavigatorKey,
+          routes: [
+            GoRoute(
+              name: 'home',
+              path: '/home',
+              builder: (context, state) => const HomePage(),
             ),
           ],
         ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              name: 'note',
+              path: '/note',
+              builder: (context, state) => const NotePage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              name: 'goal',
+              path: '/goal',
+              builder: (context, state) => const GoalPage(),
+            ),
+          ],
+        ),
+        StatefulShellBranch(
+          routes: [
+            GoRoute(
+              name: 'profile',
+              path: '/profile',
+              builder: (context, state) => const ProfilePage(),
+            ),
+          ],
+        ),
+      ],
+    ),
   ],
 );

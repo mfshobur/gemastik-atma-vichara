@@ -1,4 +1,3 @@
-import 'package:atma_vichara_gemastik/feature/presentation/pages/goal_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/home/home_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/home/scaffold_with_navbar.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/note_page.dart';
@@ -40,7 +39,7 @@ final router = GoRouter(
         // main page will have navbar
         if (state.fullPath == '/home' ||
             state.fullPath == '/note' ||
-            state.fullPath == '/goal' ||
+            // state.fullPath == '/goal' ||
             state.fullPath == '/profile') {
           return ScaffoldWithNavBar(navigationShell: navigationShell);
         }
@@ -76,15 +75,15 @@ final router = GoRouter(
             ),
           ],
         ),
-        StatefulShellBranch(
-          routes: [
-            GoRoute(
-              name: 'goal',
-              path: '/goal',
-              builder: (context, state) => const GoalPage(),
-            ),
-          ],
-        ),
+        // StatefulShellBranch(
+        //   routes: [
+        //     GoRoute(
+        //       name: 'goal',
+        //       path: '/goal',
+        //       builder: (context, state) => const GoalPage(),
+        //     ),
+        //   ],
+        // ),
         StatefulShellBranch(
           routes: [
             GoRoute(

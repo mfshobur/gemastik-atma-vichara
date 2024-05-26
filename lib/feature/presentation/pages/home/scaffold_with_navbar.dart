@@ -78,23 +78,23 @@ class ScaffoldWithNavBar extends StatelessWidget {
                     ),
                     label: 'Notes',
                   ),
-                  BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 0),
-                      child: Image(
-                        image: const AssetImage(R.ASSETS_ICONS_GOAL_PNG),
-                        color: navigationShell.currentIndex == 2 ? color.primary : null,
-                        width: 25,
-                      ),
-                    ),
-                    label: 'Goals',
-                  ),
+                  // BottomNavigationBarItem(
+                  //   icon: Padding(
+                  //     padding: const EdgeInsets.only(top: 0),
+                  //     child: Image(
+                  //       image: const AssetImage(R.ASSETS_ICONS_GOAL_PNG),
+                  //       color: navigationShell.currentIndex == 2 ? color.primary : null,
+                  //       width: 25,
+                  //     ),
+                  //   ),
+                  //   label: 'Goals',
+                  // ),
                   BottomNavigationBarItem(
                     icon: Padding(
                       padding: const EdgeInsets.only(top: 0),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_PROFILE_PNG),
-                        color: navigationShell.currentIndex == 3 ? color.primary : null,
+                        color: navigationShell.currentIndex == 2 ? color.primary : null,
                         width: 25,
                       ),
                     ),

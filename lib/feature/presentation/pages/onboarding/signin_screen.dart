@@ -33,61 +33,65 @@ class _SigninScreenState extends State<SigninScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // appBar: AppBar(
-      //   automaticallyImplyLeading: true,
-      // ),
       body: SafeArea(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Image.asset(R.ASSETS_ICONS_ICON_PNG, height: 65),
-              const SizedBox(height: 53),
-              const Text(
-                'Masuk ke dalam akun anda',
-                style: TextStyle(
-                  fontSize: 20,
-                  fontWeight: kFontweightSemiBold,
-                ),
-              ),
-              const SizedBox(height: 20),
-              TextInputColumn(
-                text: 'Email',
-                controller: emailController,
-              ),
-              TextInputColumn(
-                text: 'Password',
-                controller: passwordController,
-                isPassword: true,
-              ),
-              const SizedBox(height: 14),
-              RichText(
-                text: TextSpan(
-                  children: [
-                    const TextSpan(
-                      text: 'Tidak memiliki akun? ',
-                      style: TextStyle(color: kTextGreyColor),
+        child: SingleChildScrollView(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: kDefaultPadding, vertical: 50),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                  Center(child: Image.asset(R.ASSETS_ICONS_ICON_PNG, height: 65)),
+                  const SizedBox(height: 53),
+                  const Text(
+                    'Selamat Datang\nKembali!',
+                    textAlign: TextAlign.left,
+                    style: TextStyle(
+                      fontSize: 32,
+                      fontWeight: kFontweightSemiBold,
                     ),
-                    TextSpan(
-                      text: 'Buat akun',
-                      style: const TextStyle(
-                        color: Colors.black,
-                      ),
-                      recognizer: TapGestureRecognizer()
-                        ..onTap = () {
-                          context.go('/onboarding/signup');
-                        },
-                    ),
-                  ],
+                  ),
+                  const SizedBox(height: 20),
+                TextInputColumn(
+                  text: 'Email',
+                  controller: emailController,
                 ),
-              ),
-              const SizedBox(height: 20),
-              PrimaryElevatedButton(
-                text: 'Masuk',
-                onPressed: () => context.go('/home'),
-              ),
-            ],
+                TextInputColumn(
+                  text: 'Password',
+                  controller: passwordController,
+                  isPassword: true,
+                ),
+                const SizedBox(height: 80),
+                Center(
+                  child: RichText(
+                    text: TextSpan(
+                      children: [
+                        const TextSpan(
+                          text: 'Doesn\'t have an account? ',
+                          style: TextStyle(color: kTextGreyColor),
+                        ),
+                        TextSpan(
+                          text: 'Register',
+                          style: const TextStyle(
+                            color: Colors.black,
+                          ),
+                          recognizer: TapGestureRecognizer()
+                            ..onTap = () {
+                              context.go('/onboarding/signup');
+                            },
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 20),
+                PrimaryElevatedButton(
+                  text: 'Sign In',
+                  onPressed: () => context.go('/home'),
+                ),
+                const SizedBox(height: 40),
+              ],
+            ),
           ),
         ),
       ),

@@ -1,3 +1,4 @@
+import 'package:atma_vichara_gemastik/const/resource.dart';
 import 'package:atma_vichara_gemastik/core/constants.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/primary_elevated_button.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/text_input_column.dart';
@@ -46,15 +47,18 @@ class _SignupScreenState extends State<SignupScreen> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
+                Center(child: Image.asset(R.ASSETS_ICONS_ICON_PNG, height: 65)),
+                const SizedBox(height: 32),
                 const Text(
-                  'Ayo Mulai',
+                  'Let\'s Get Started!',
+                  textAlign: TextAlign.left,
                   style: TextStyle(
-                    fontSize: 36,
+                    fontSize: 32,
                     fontWeight: kFontweightSemiBold,
                   ),
                 ),
                 const Text(
-                  'Buat akun baru Atma Vichara',
+                  'Create an account to Atma Vichara',
                   style: TextStyle(
                     fontSize: 16,
                   ),
@@ -74,7 +78,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   isPassword: true,
                 ),
                 TextInputColumn(
-                  text: 'Konfirmasi Password',
+                  text: 'Confirm Password',
                   controller: confirmPasswordController,
                   isPassword: true,
                 ),
@@ -84,11 +88,11 @@ class _SignupScreenState extends State<SignupScreen> {
                     text: TextSpan(
                       children: [
                         const TextSpan(
-                          text: 'Sudah memiliki akun? ',
+                          text: 'Already have an account? ',
                           style: TextStyle(color: kTextGreyColor),
                         ),
                         TextSpan(
-                          text: 'Masuk di sini',
+                          text: 'Sign in here',
                           style: const TextStyle(
                             color: Colors.black,
                           ),
@@ -103,7 +107,7 @@ class _SignupScreenState extends State<SignupScreen> {
                 ),
                 const SizedBox(height: 20),
                 PrimaryElevatedButton(
-                  text: 'Daftar',
+                  text: 'Register',
                   onPressed: () {},
                 ),
               ],

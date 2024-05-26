@@ -5,7 +5,7 @@ const _white = Color(0xffffffff);
 const _black = Color(0xff1E1E1E);
 const _grey = Color(0xffA8A8A8);
 
-const _primary = Color(0xff0466C8);
+const _primary = Color(0xff1551ED);
 const _secondary = Color(0xff142B71);
 const _tertiary = Color(0xffAD8E55);
 

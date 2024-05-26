@@ -22,4 +22,8 @@ class R {
   /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/icons/reflection.png)
   static const String ASSETS_ICONS_REFLECTION_PNG =
       'assets/icons/reflection.png';
+
+  /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/images/onboarding.png)
+  static const String ASSETS_IMAGES_ONBOARDING_PNG =
+      'assets/images/onboarding.png';
 }

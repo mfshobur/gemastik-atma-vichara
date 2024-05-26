@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 const kAppName = "Atma Vichara";
 
 const kDarkGrey = Color(0xff555555);
+const kLightGrey = Color(0xffB1B1B1);
 const kDisable = Color(0xffF0F0F0);
 final kDefaultErrorColor = Colors.red[700]!;
 const kInputBorderColor = Color(0xff919191);

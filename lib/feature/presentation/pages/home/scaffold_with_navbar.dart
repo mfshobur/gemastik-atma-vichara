@@ -22,6 +22,7 @@ class ScaffoldWithNavBar extends StatelessWidget {
   Widget build(BuildContext context) {
     final color = Theme.of(context).colorScheme;
     final bigScreen = MediaQuery.of(context).size.width > 480;
+    const double iconSize = 20;
 
     return Scaffold(
       body: Center(
@@ -53,55 +54,68 @@ class ScaffoldWithNavBar extends StatelessWidget {
               ),
               child: BottomNavigationBar(
                 type: BottomNavigationBarType.fixed,
-                showSelectedLabels: false,
-                showUnselectedLabels: false,
                 items: [
                   BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 0),
+                    icon: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      width: 64,
+                      height: 32,
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: navigationShell.currentIndex == 0
+                            ? color.surfaceVariant
+                            : color.surface,
+                      ),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_REFLECTION_PNG),
                         color: navigationShell.currentIndex == 0 ? color.primary : null,
-                        width: 25,
+                        width: iconSize,
                       ),
                     ),
-                    label: 'Home',
+                    label: 'Reflect',
                   ),
                   BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 0),
+                    icon: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      width: 64,
+                      height: 32,
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: navigationShell.currentIndex == 1
+                            ? color.surfaceVariant
+                            : color.surface,
+                      ),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_NOTE_PNG),
                         color: navigationShell.currentIndex == 1 ? color.primary : null,
-                        width: 25,
+                        width: iconSize,
                       ),
                     ),
                     label: 'Notes',
                   ),
-                  // BottomNavigationBarItem(
-                  //   icon: Padding(
-                  //     padding: const EdgeInsets.only(top: 0),
-                  //     child: Image(
-                  //       image: const AssetImage(R.ASSETS_ICONS_GOAL_PNG),
-                  //       color: navigationShell.currentIndex == 2 ? color.primary : null,
-                  //       width: 25,
-                  //     ),
-                  //   ),
-                  //   label: 'Goals',
-                  // ),
                   BottomNavigationBarItem(
-                    icon: Padding(
-                      padding: const EdgeInsets.only(top: 0),
+                    icon: Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 8),
+                      width: 64,
+                      height: 32,
+                      padding: const EdgeInsets.symmetric(vertical: 5),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(50),
+                        color: navigationShell.currentIndex == 2
+                            ? color.surfaceVariant
+                            : color.surface,
+                      ),
                       child: Image(
                         image: const AssetImage(R.ASSETS_ICONS_PROFILE_PNG),
                         color: navigationShell.currentIndex == 2 ? color.primary : null,
-                        width: 25,
+                        width: iconSize,
                       ),
                     ),
                     label: 'Profile',
                   ),
                 ],
-                // currentIndex: _calculateSelectedIndex(context),
                 currentIndex: navigationShell.currentIndex,
                 onTap: (int idx) => _onItemTapped(idx, context),
               ),

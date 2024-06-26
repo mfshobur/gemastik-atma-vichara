@@ -1,5 +1,6 @@
 import 'package:atma_vichara_gemastik/core/constants.dart';
 import 'package:atma_vichara_gemastik/core/utils/custom_snackbar.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/note_notifier.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -88,12 +89,13 @@ class ProfilePage extends StatelessWidget {
                     ),
                   ],
                 ),
-                const SizedBox(height: kDefaultPadding),
+                const SizedBox(height: kDefaultPadding * 2),
                 Consumer<UserNotifier>(
                   builder: (context, value, child) {
                     if (value.signOutState.stateLoading()) {
                       return const CircularProgressIndicator();
                     } else if (value.signOutState.stateSuccess()) {
+                      Future.microtask(() => Provider.of<NoteNotifier>(context, listen: false).clearNotes());
                       Future.microtask(() => context.go('/onboarding'));
                     } else if (value.signOutState.stateError()) {
                       CustomSnackbar.alert(context, value.signOutState.failure!.message);

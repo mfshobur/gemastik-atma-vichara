@@ -6,7 +6,7 @@ const _black = Color(0xff1E1E1E);
 const _grey = Color(0xffA8A8A8);
 
 const _primary = Color(0xff1551ED);
-const _secondary = Color(0xff142B71);
+const _secondary = Color(0xff0188ED);
 const _tertiary = Color(0xffAD8E55);
 
 class AppTheme {
@@ -17,12 +17,12 @@ class AppTheme {
       secondary: _secondary,
       tertiary: _tertiary,
       onPrimary: _white,
-      onSecondary: _white,
+      onSecondary: Color(0xffE0F2FF),
       onTertiary: _white,
       background: _white,
       onBackground: _black,
       surface: _white,
-      surfaceVariant: Colors.transparent,
+      surfaceVariant: Color(0xffE1EBFF),
       onSurface: _black,
       onSurfaceVariant: _grey,
       shadow: _grey,

@@ -1,5 +1,6 @@
 import 'package:atma_vichara_gemastik/const/resource.dart';
 import 'package:atma_vichara_gemastik/core/constants.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/note_notifier.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
@@ -32,6 +33,8 @@ class _SplashScreenState extends State<SplashScreen> {
             if (userNotifier.getCurrentUserState.stateError()) {
               Future.microtask(() => context.go('/onboarding'));
             } else if (userNotifier.getCurrentUserState.stateSuccess()) {
+              Future.microtask(
+                  () => Provider.of<NoteNotifier>(context, listen: false).getNotesFromLocal());
               Future.microtask(() => context.go('/home'));
             }
             return Center(

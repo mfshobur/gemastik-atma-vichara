@@ -1,11 +1,12 @@
 import 'package:atma_vichara_gemastik/const/resource.dart';
 import 'package:atma_vichara_gemastik/core/constants.dart';
-import 'package:atma_vichara_gemastik/core/utils/custom_snackbar.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/provider/note_notifier.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/provider/user_notifier.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/primary_elevated_button.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/text_input_column.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -19,6 +20,7 @@ class SigninScreen extends StatefulWidget {
 class _SigninScreenState extends State<SigninScreen> {
   late TextEditingController emailController;
   late TextEditingController passwordController;
+
   @override
   void initState() {
     emailController = TextEditingController();
@@ -63,6 +65,8 @@ class _SigninScreenState extends State<SigninScreen> {
                   text: 'Password',
                   controller: passwordController,
                   isPassword: true,
+                  onComplete: () => Provider.of<UserNotifier>(context, listen: false)
+                      .signIn(emailController.text, passwordController.text),
                 ),
                 const SizedBox(height: 80),
                 Center(
@@ -94,10 +98,13 @@ class _SigninScreenState extends State<SigninScreen> {
                       return const Center(child: CircularProgressIndicator());
                     } else if (value.signInState.stateError()) {
                       // scaffold error message
-                      Future.microtask(
-                          () => CustomSnackbar.alert(context, value.signInState.failure!.message));
+                      Fluttertoast.showToast(
+                        msg: value.signInState.failure!.message,
+                      );
                     } else if (value.signInState.stateSuccess()) {
                       // go to home
+                      Future.microtask(() => Provider.of<NoteNotifier>(context, listen: false)
+                          .getNotes(value.user!.id));
                       Future.microtask(() => context.go('/home'));
                     }
                     return PrimaryElevatedButton(

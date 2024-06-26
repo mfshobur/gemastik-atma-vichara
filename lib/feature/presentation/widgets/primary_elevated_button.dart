@@ -28,6 +28,8 @@ class PrimaryElevatedButton extends StatelessWidget {
       onPressed: onPressed,
       style: style ??
           ElevatedButton.styleFrom(
+            // remove splash effect
+            splashFactory: disabled ? NoSplash.splashFactory : InkRipple.splashFactory,
             backgroundColor: disabled ? kDisable : color.primary,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(8.0),
@@ -43,7 +45,7 @@ class PrimaryElevatedButton extends StatelessWidget {
         style: TextStyle(
           fontSize: fontSize ?? 16,
           fontWeight: FontWeight.w500,
-          color: disabled ? color.primary : null,
+          color: disabled ? color.secondary : null,
         ),
       ),
     );

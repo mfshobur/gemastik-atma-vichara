@@ -20,7 +20,19 @@ class R {
   static const String ASSETS_ICONS_REFLECTION_PNG =
       'assets/icons/reflection.png';
 
+  /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/images/future_card_image.png)
+  static const String ASSETS_IMAGES_FUTURE_CARD_IMAGE_PNG =
+      'assets/images/future_card_image.png';
+
   /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/images/onboarding.png)
   static const String ASSETS_IMAGES_ONBOARDING_PNG =
       'assets/images/onboarding.png';
+
+  /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/images/past_card_image.png)
+  static const String ASSETS_IMAGES_PAST_CARD_IMAGE_PNG =
+      'assets/images/past_card_image.png';
+
+  /// ![preview](file:///Users/mfshobur/Documents/flutter/atma_vichara_gemastik/assets/images/present_card_image.png)
+  static const String ASSETS_IMAGES_PRESENT_CARD_IMAGE_PNG =
+      'assets/images/present_card_image.png';
 }

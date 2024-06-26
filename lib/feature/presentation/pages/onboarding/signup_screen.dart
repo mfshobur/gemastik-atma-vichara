@@ -6,6 +6,7 @@ import 'package:atma_vichara_gemastik/feature/presentation/widgets/primary_eleva
 import 'package:atma_vichara_gemastik/feature/presentation/widgets/text_input_column.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'package:go_router/go_router.dart';
 import 'package:provider/provider.dart';
 
@@ -96,6 +97,7 @@ class _SignupScreenState extends State<SignupScreen> {
                   text: 'Confirm Password',
                   controller: confirmPasswordController,
                   isPassword: true,
+                  onComplete: () async => onSubmit(),
                 ),
                 const SizedBox(height: 14),
                 Center(
@@ -126,9 +128,9 @@ class _SignupScreenState extends State<SignupScreen> {
                     if (value.signUpState.stateLoading()) {
                       return const Center(child: CircularProgressIndicator());
                     } else if (value.signUpState.stateError()) {
-                      // scaffold error message
-                      Future.microtask(
-                          () => CustomSnackbar.alert(context, value.signUpState.failure!.message));
+                      Fluttertoast.showToast(
+                        msg: value.signUpState.failure!.message,
+                      );
                     } else if (value.signUpState.stateSuccess()) {
                       // go to home
                       Future.microtask(() => context.go('/home'));

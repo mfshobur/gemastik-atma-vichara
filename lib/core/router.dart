@@ -1,5 +1,10 @@
+import 'package:atma_vichara_gemastik/core/enum.dart';
+import 'package:atma_vichara_gemastik/feature/domain/entities/annual_note.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/pages/home/form_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/home/home_page.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/pages/home/reflection_response_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/home/scaffold_with_navbar.dart';
+import 'package:atma_vichara_gemastik/feature/presentation/pages/note/edit_note_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/note_page.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/onboarding/onboarding_screen.dart';
 import 'package:atma_vichara_gemastik/feature/presentation/pages/onboarding/signin_screen.dart';
@@ -63,6 +68,28 @@ final router = GoRouter(
               name: 'home',
               path: '/home',
               builder: (context, state) => const HomePage(),
+              routes: [
+                GoRoute(
+                  path: 'form',
+                  builder: (context, state) {
+                    final map = state.extra as Map<String, dynamic>;
+                    final type = map['type'] as ReflectionType;
+                    final description = map['description'] as String;
+
+                    return FormPage(
+                      type: type,
+                      description: description,
+                    );
+                  },
+                ),
+                GoRoute(
+                  path: 'response',
+                  builder: (context, state) {
+                    final response = state.extra as String;
+                    return ReflectionResponsePage(response: response);
+                  },
+                ),
+              ],
             ),
           ],
         ),
@@ -72,6 +99,15 @@ final router = GoRouter(
               name: 'note',
               path: '/note',
               builder: (context, state) => const NotePage(),
+              routes: [
+                GoRoute(
+                  path: 'edit',
+                  builder: (context, state) {
+                    final note = state.extra as AnnualNote?;
+                    return EditNotePage(note: note);
+                  },
+                ),
+              ],
             ),
           ],
         ),

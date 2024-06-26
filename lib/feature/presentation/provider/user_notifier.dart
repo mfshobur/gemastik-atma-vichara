@@ -36,6 +36,7 @@ class UserNotifier extends ChangeNotifier {
       final userData = userDoc.data() as Map<String, dynamic>;
       user = UserDataModel.fromJson(userData).toEntity();
       await saveUserDataToLocal();
+      signOutState.state = RequestState.initial;
       signInState.state = RequestState.success;
       notifyListeners();
     } on FirebaseAuthException catch (e) {
@@ -61,16 +62,35 @@ class UserNotifier extends ChangeNotifier {
       final userFromCredential = userCredential.user;
       // create new document on firestore
       await _firestore.collection('users').doc(userFromCredential!.uid).set({
+        'id': userFromCredential.uid,
         'name': name,
         'email': email,
-        'uid': userFromCredential.uid,
+        'already_reflect_past': false,
+        'already_reflect_present': false,
+        'already_reflect_future': false,
       });
 
+      // create notes collection
+      // await _firestore.collection('users').doc(userFromCredential.uid).collection('notes').doc().set({
+      //   'title': 'Welcome to Atma Vichara Gemastik',
+      //   'description': 'This is your first note. You can edit or delete this note.',
+      //   'date': DateTime.now().millisecondsSinceEpoch,
+      // });
+
       user = UserData(
+        id: userFromCredential.uid,
         name: name,
         email: email,
+        alreadyReflectPast: false,
+        alreadyReflectPresent: false,
+        alreadyReflectFuture: false,
+        pastAnswers: null,
+        presentAnswers: null,
+        futureAnswers: null,
       );
+
       await saveUserDataToLocal();
+      signOutState.state = RequestState.initial;
       signUpState.state = RequestState.success;
       notifyListeners();
     } on FirebaseAuthException catch (e) {
@@ -89,6 +109,8 @@ class UserNotifier extends ChangeNotifier {
     notifyListeners();
     await _auth.signOut();
     // remove user data from local
+    signInState.state = RequestState.initial;
+    signUpState.state = RequestState.initial;
     signOutState.state = RequestState.success;
     notifyListeners();
 
@@ -116,6 +138,53 @@ class UserNotifier extends ChangeNotifier {
       getCurrentUserState.state = RequestState.error;
       notifyListeners();
     }
+  }
+
+  Future<void> updateLocalReflection(ReflectionType type, List<String> answers) async {
+    if (type == ReflectionType.past) {
+      user = user!.copyWith(
+        alreadyReflectPast: true,
+        pastAnswers: answers,
+      );
+    } else if (type == ReflectionType.present) {
+      user = user!.copyWith(
+        alreadyReflectPresent: true,
+        presentAnswers: answers,
+      );
+    } else {
+      user = user!.copyWith(
+        alreadyReflectFuture: true,
+        futureAnswers: answers,
+      );
+    }
+    await saveUserDataToLocal();
+  }
+
+  Future<void> updateReflectionResponse(String response) async {
+    user = user!.copyWith(reflectionResponse: response);
+    await saveUserDataToLocal();
+    notifyListeners();
+  }
+
+  Future<void> resetLocalReflection(ReflectionType type) async {
+    if (type == ReflectionType.past) {
+      user = user!.copyWith(
+        alreadyReflectPast: false,
+        pastAnswers: null,
+      );
+    } else if (type == ReflectionType.present) {
+      user = user!.copyWith(
+        alreadyReflectPresent: false,
+        presentAnswers: null,
+      );
+    } else {
+      user = user!.copyWith(
+        alreadyReflectFuture: false,
+        futureAnswers: null,
+      );
+    }
+    await saveUserDataToLocal();
+    notifyListeners();
   }
 
   // save user data to local

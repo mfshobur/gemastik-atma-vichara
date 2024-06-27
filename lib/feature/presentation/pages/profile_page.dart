@@ -39,7 +39,7 @@ class ProfilePage extends StatelessWidget {
                     color: Color(0xffE1E8FF),
                   ),
                   child: Text(
-                    user!.name[0],
+                    user!.name[0].toUpperCase(),
                     style: TextStyle(
                       fontSize: 64,
                       fontWeight: kFontweightSemiBold,
@@ -95,7 +95,8 @@ class ProfilePage extends StatelessWidget {
                     if (value.signOutState.stateLoading()) {
                       return const CircularProgressIndicator();
                     } else if (value.signOutState.stateSuccess()) {
-                      Future.microtask(() => Provider.of<NoteNotifier>(context, listen: false).clearNotes());
+                      Future.microtask(
+                          () => Provider.of<NoteNotifier>(context, listen: false).clearNotes());
                       Future.microtask(() => context.go('/onboarding'));
                     } else if (value.signOutState.stateError()) {
                       CustomSnackbar.alert(context, value.signOutState.failure!.message);

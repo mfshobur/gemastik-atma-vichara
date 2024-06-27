@@ -47,6 +47,12 @@ dependencies:
   google_generative_ai: ^0.4.3
   flutter_dotenv: ^5.1.0
   uuid: ^4.4.0
+  flutter_launcher_icons: ^0.13.1
+
+flutter_launcher_icons:
+  android: "launcher_icon"
+  ios: true
+  image_path: "assets/icons/icon.png"
 
 dev_dependencies:
   flutter_test:

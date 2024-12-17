@@ -22,6 +22,16 @@ class UserNotifier extends ChangeNotifier {
   final NotifierState<void> getCurrentUserState = NotifierState<void>(value: null);
 
   Future<void> signIn(String email, String password) async {
+    if (email.isEmpty && password.isEmpty) {
+      signInState.state = RequestState.error;
+      signInState.failure = BadRequestFailure(
+        title: 'Email dan Password tidak boleh kosong',
+        message: 'Email dan Password tidak boleh kosong',
+      );
+      notifyListeners();
+      return;
+    }
+
     try {
       signInState.state = RequestState.loading;
       notifyListeners();

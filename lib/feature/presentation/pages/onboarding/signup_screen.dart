@@ -42,7 +42,13 @@ class _SignupScreenState extends State<SignupScreen> {
   }
 
   void onSubmit() {
-    if (passwordController.text != confirmPasswordController.text) {
+    // all form empty
+    if (usernameController.text.isEmpty &&
+        emailController.text.isEmpty &&
+        passwordController.text.isEmpty &&
+        confirmPasswordController.text.isEmpty) {
+      CustomSnackbar.alert(context, 'Semua field harus diisi');
+    } else if (passwordController.text != confirmPasswordController.text) {
       CustomSnackbar.alert(context, 'Password tidak sama');
     } else {
       Provider.of<UserNotifier>(context, listen: false).signUp(

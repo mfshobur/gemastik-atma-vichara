@@ -96,6 +96,11 @@ class _FormPageState extends State<FormPage> {
   }
 
   void prevQuestion() {
+    // if from last index, change next button text to 'Next'
+    if (nextButtonText == 'Done') {
+      nextButtonText = 'Next';
+      canNext = true;
+    }
     // save answer
     answers[currentQuestionIndex] = answerController.text;
     // go to prev question
